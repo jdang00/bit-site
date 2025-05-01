@@ -1,0 +1,143 @@
+---
+title: "Kickstart Your Web Stack with Linux, Apache, MariaDB & PHP: A Hands-On Guide"
+date: "2025-05-01"
+description: "Building your first website using the LAMP stack."
+author: "Justin A. Dang"
+---
+
+
+Welcome to the first stop in your journey toward full-stack mastery using Linux-based environments! This guide walks you through setting up a modern web server stack using OpenSuSE Leap 15.5 inside a virtual machine (VM). It’s based on real-world coursework from Modern Web Applications and will have you deploying like a pro in no time.
+
+## What You’ll Learn
+- How to install OpenSuSE and set up a virtual Linux environment
+- Deploying and managing Apache and MariaDB
+- Enabling PHP support and managing databases with phpMyAdmin
+- Configuring system services, firewalls, and network interfaces
+- Writing basic web forms and SQL queries
+
+
+## Setting Up Your Virtual Machine
+
+1.  Download OpenSuSE Leap 15.5
+
+Grab the ISO from the official OpenSuSE website.
+
+2.  Create Your VM
+
+Use a tool like VirtualBox or VMware with these settings:
+	•	Bridged Adapter for networking
+	•	≥ 32GB disk space (too big can slow exports/imports)
+	•	Allocate CPU/RAM sensibly—don’t overdo it
+
+
+## Installing the LAMP Stack
+
+Required Software:
+- apache2
+- php8
+- php8-mysql
+- phpMyAdmin
+
+Two Ways to Install:
+
+Using Yast GUI:
+
+```bash
+yast > Software > Software Management
+```
+
+Or from termainl
+
+```bash
+zypper install apache2 php8 php8-mysql phpMyAdmin
+```
+
+## Configuring Services
+
+Enable & Start Services
+
+```bash
+systemctl start apache2
+systemctl enable apache2
+systemctl start mariadb
+systemctl enable mariadb
+```
+
+## Open the Firewall
+
+```bash
+firewall-cmd --add-service=http --permanent
+firewall-cmd --add-service=https --permanent
+firewall-cmd --reload
+```
+
+## Networking Basics
+Understand these key terms:
+- IP address – Your device’s address on the network
+- Subnet Mask – Defines the network range
+- Default Gateway – Path out of your local network
+- DNS – Resolves domain names to IPs
+- localhost – The loopback address (127.0.0.1)
+
+Test your server:
+
+```bash
+ip a
+```
+
+Then access http://your-ip from another device or browser
+
+
+## Database Setup
+Launch the SQL shell:
+
+```bash
+mysql -u root -p
+```
+Then:
+
+```SQL
+CREATE DATABASE uafsdb;
+CREATE USER 'uaweb'@'localhost' IDENTIFIED BY 'mydbpass123';
+GRANT ALL PRIVILEGES ON uafsdb.* TO 'uaweb'@'localhost';
+```
+
+You can now visit http://<your-ip>/phpMyAdmin/ to manage your DB through a GUI.
+
+## Frontend: HTML + PHP Primer
+
+HTML Form
+
+```html
+<form method="GET" action="./form.php">
+  First Name: <input type="text" name="txtFirstName"><br>
+  Last Name: <input type="text" name="txtLastName"><br>
+  <input type="submit" value="Submit">
+</form>
+```
+
+form.php
+```php
+<?php
+$fname = $_GET["txtFirstName"];
+$lname = $_GET["txtLastName"];
+echo "Hello, $fname $lname!";
+?>
+```
+
+
+## Basic SQL Commands
+
+```SQL
+CREATE TABLE TESTDATA (
+  FIRSTNAME VARCHAR(30),
+  LASTNAME VARCHAR(30)
+);
+
+INSERT INTO TESTDATA VALUES ('Test', 'User');
+SELECT * FROM TESTDATA;
+```
+
+
+## Final Thoughts
+By the end of this setup, you’ll have a fully functioning web and database server, complete with firewall access and form processing. This stack mirrors the LAMP architecture used in countless production environment.

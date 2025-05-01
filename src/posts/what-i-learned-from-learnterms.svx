@@ -1,0 +1,58 @@
+---
+title: "What I Learned From Building LearnTerms"
+date: "2025-05-01"
+description: "I started a side project in optometry school for my classmates. Here are 5 lessons I learned from it."
+author: "Justin A. Dang"
+---
+
+LearnTerms started as a simple flashcard tool to help me and my classmates study for optometry school. But what it became taught me lessons far beyond just code and quizzes.
+
+Here’s what I learned from building—and using—LearnTerms.
+
+### 1. Simplicity Scales
+
+I started with the basics: term, meaning, starred or not. As requests came in—tagging, search, quizzes—I kept asking: what’s essential?
+
+Turns out, the fewer assumptions your system makes, the more useful it becomes. Simplicity isn’t the enemy of power—it’s a prerequisite.
+
+### 2. Studying ≠ Cramming
+
+Watching friends use LearnTerms showed me that study habits matter more than just study hours. The best students used small, daily bursts. They engaged with the material actively—flagging confusing terms, revisiting weak spots.
+
+The app helped, but the method helped more. I started building smarter features because I saw what actually worked.
+
+### 3. Feedback Is Fuel
+
+Every time someone messaged me “Can it do this?” I wrote it down.
+
+“Can I filter by topic?”
+
+“Can I track progress?”
+
+“Can I create my own decks?”
+
+These weren’t complaints—they were blueprints. Listening turned LearnTerms from a study tool into a real platform.
+
+### 4. Build for People, Not Just Users
+
+Some of my favorite moments were watching classmates laugh over a joke I hid in the UI or share a card that helped them pass a quiz. LearnTerms wasn’t just useful—it became social.
+
+That taught me: delight matters. A little joy in the flow goes a long way.
+
+### 5. You Learn More by Teaching
+
+To build LearnTerms, I had to understand every term deeply. Writing definitions that could be parsed by an AI required clarity. Debugging card logic meant understanding pedagogical logic.
+
+Making the app taught me more than any lecture did.
+
+## Final Thoughts
+
+LearnTerms wasn’t just a side project. It became my lab, my notebook, my teaching assistant.
+
+It taught me how people learn—and how software can help.
+
+If you're building something to help others study: start small, listen well, and be open to joy.
+
+Because learning isn’t just about answers. It’s about meaning.
+
+And sometimes, it starts with a flashcard.
