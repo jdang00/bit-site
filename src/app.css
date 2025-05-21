@@ -23,12 +23,12 @@
 /* 5) CSS variables */
 :root {
 	/* Colors */
-	--background: hsl(0 0% 100%);
+	--background: hsl(0 0% 98%);
 	--background-alt: hsl(0 0% 100%);
-	--foreground: hsl(0 0% 9%);
-	--foreground-alt: hsl(0 0% 32%);
+	--foreground: hsl(0 0% 12%);
+	--foreground-alt: hsl(0 0% 25%);
 	--muted: hsl(240 5% 96%);
-	--muted-foreground: hsla(0 0% 9% / 0.4);
+	--muted-foreground: hsla(0 0% 12% / 0.6);
 	--border: hsl(240 6% 10%);
 	--border-input: hsla(240 6% 10% / 0.17);
 	--border-input-hover: hsla(240 6% 10% / 0.4);
@@ -37,8 +37,8 @@
 	--dark-10: hsla(240 6% 10% / 0.1);
 	--dark-40: hsla(240 6% 10% / 0.4);
 	--dark-04: hsla(240 6% 10% / 0.04);
-	--accent: hsl(204 94% 94%);
-	--accent-foreground: hsl(204 80% 16%);
+	--accent: hsl(204 94% 90%);
+	--accent-foreground: hsl(204 80% 20%);
 	--destructive: hsl(347 77% 50%);
 	--tertiary: hsl(37.7 92.1% 50.2%);
 	--line: hsl(0 0% 100%);
@@ -56,25 +56,25 @@
 
 .dark {
 	/* Dark mode variables */
-	--background: hsl(0 0% 5%);
-	--background-alt: hsl(0 0% 8%);
-	--foreground: hsl(0 0% 95%);
-	--foreground-alt: hsl(0 0% 70%);
-	--muted: hsl(240 4% 16%);
-	--muted-foreground: hsla(0 0% 100% / 0.4);
-	--border: hsl(0 0% 96%);
-	--border-input: hsla(0 0% 96% / 0.17);
-	--border-input-hover: hsla(0 0% 96% / 0.4);
-	--border-card: hsla(0 0% 96% / 0.1);
-	--dark: hsl(0 0% 96%);
-	--dark-40: hsl(0 0% 96% / 0.4);
-	--dark-10: hsl(0 0% 96% / 0.1);
-	--dark-04: hsl(0 0% 96% / 0.04);
-	--accent: hsl(204 90% 90%);
-	--accent-foreground: hsl(204 94% 94%);
+	--background: hsl(0 0% 7%);
+	--background-alt: hsl(0 0% 10%);
+	--foreground: hsl(0 0% 98%);
+	--foreground-alt: hsl(0 0% 80%);
+	--muted: hsl(240 4% 18%);
+	--muted-foreground: hsla(0 0% 100% / 0.6);
+	--border: hsl(0 0% 90%);
+	--border-input: hsla(0 0% 90% / 0.17);
+	--border-input-hover: hsla(0 0% 90% / 0.4);
+	--border-card: hsla(0 0% 90% / 0.1);
+	--dark: hsl(0 0% 90%);
+	--dark-40: hsl(0 0% 90% / 0.4);
+	--dark-10: hsl(0 0% 90% / 0.1);
+	--dark-04: hsl(0 0% 90% / 0.04);
+	--accent: hsl(204 90% 85%);
+	--accent-foreground: hsl(204 94% 98%);
 	--destructive: hsl(350 89% 60%);
 	--line: hsl(0 0% 9.02%);
-	--tertiary: hsl(61.3 100% 82.2%);
+	--tertiary: hsl(61.3 100% 85%);
 	--contrast: hsl(0 0% 100%);
 
 	--shadow-mini: 0px 1px 0px 1px rgba(0, 0, 0, 0.3);
@@ -164,25 +164,81 @@
 	}
 
 	::selection {
-		background: #fdffa4;
-		color: black;
+		background: var(--accent);
+		color: var(--accent-foreground);
 	}
 
 	/* ==== TYPOGRAPHY OVERRIDES ==== */
 	.prose h1 {
-		font-size: 1.75rem; /* smaller than page title */
-		color: var(--color-foreground-alt); /* dimmed color */
+		font-size: 1.75rem;
+		color: var(--color-foreground-alt);
 		margin-top: 2em;
 		margin-bottom: 0.5em;
+		@apply transition-colors duration-200;
 	}
+
+	.prose h1:hover {
+		@apply text-foreground;
+	}
+
 	.dark .prose h1 {
 		color: var(--color-foreground-alt);
+	}
+
+	.dark .prose h1:hover {
+		@apply text-foreground;
 	}
 }
 
 /* Component layer tweaks */
 @layer components {
 	.link {
-		@apply hover:text-foreground/80 focus-visible:ring-foreground focus-visible:ring-offset-background inline-flex items-center gap-1 rounded-xs font-medium no-underline focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-hidden;
+		@apply hover:text-foreground/80 focus-visible:ring-foreground focus-visible:ring-offset-background inline-flex items-center gap-1 rounded-xs font-medium no-underline focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-hidden transition-colors duration-200;
+	}
+
+	/* Enhanced hover effects for icons */
+	button svg {
+		@apply transition-transform duration-200;
+	}
+
+	button:hover svg {
+		@apply scale-110;
+	}
+
+	/* Blog post hover effects */
+	.prose a {
+		@apply transition-colors duration-200 hover:text-foreground/80;
+	}
+
+	.prose img {
+		@apply transition-transform duration-300;
+	}
+
+	.prose img:hover {
+		@apply scale-[1.02];
+	}
+
+	/* Card hover effects */
+	.card {
+		@apply transition-all duration-200 hover:shadow-lg hover:-translate-y-0.5;
+	}
+
+	/* Button hover effects */
+	button:not(.link) {
+		@apply transition-all duration-200 hover:brightness-110 active:scale-95;
+	}
+
+	/* Navigation link hover effects */
+	nav a {
+		@apply relative transition-colors duration-200;
+	}
+
+	nav a::after {
+		content: '';
+		@apply absolute bottom-0 left-0 h-0.5 w-0 bg-current transition-all duration-200;
+	}
+
+	nav a:hover::after {
+		@apply w-full;
 	}
 }
